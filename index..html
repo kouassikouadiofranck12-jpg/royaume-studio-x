@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royaume Studio X — Kouassi Kouadio Franck</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:       #f9f6f0;
+  --bg2:      #ffffff;
+  --bg3:      #f2ede4;
+  --bg4:      #ebe5da;
+  --gold:     #8b6f47;
+  --gold2:    #c4a882;
+  --gold3:    #e8d5b7;
+  --text:     #1c1c1c;
+  --text2:    #6b6b6b;
+  --text3:    #b8b0a2;
+  --border:   #e0d8cd;
+  --border2:  #d0c8bb;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* BANNIERE TOP */
+.top-banner {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  background: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 200;
+  flex-shrink: 0;
+}
+.top-banner img.banner-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.top-banner-overlay {
+  position: absolute; inset: 0;
+  background: rgba(14,13,11,0.55);
+  pointer-events: none;
+}
+.top-banner-corner { position:absolute; width:18px; height:18px; }
+.top-banner-corner.tl { top:8px; left:8px; border-top:1px solid var(--gold2); border-left:1px solid var(--gold2); opacity:0.5; }
+.top-banner-corner.tr { top:8px; right:8px; border-top:1px solid var(--gold2); border-right:1px solid var(--gold2); opacity:0.5; }
+.top-banner-corner.bl { bottom:8px; left:8px; border-bottom:1px solid var(--gold2); border-left:1px solid var(--gold2); opacity:0.5; }
+.top-banner-corner.br { bottom:8px; right:8px; border-bottom:1px solid var(--gold2); border-right:1px solid var(--gold2); opacity:0.5; }
+.top-banner-title {
+  position: relative; z-index: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold2);
+  letter-spacing: 0.12em;
+  text-align: center;
+  pointer-events: none;
+}
+.top-banner-title span { color: #fff; font-style: normal; font-weight: 300; }
+.top-banner-add {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(196,168,130,0.15);
+  border: 1px solid var(--gold2);
+  color: var(--gold2);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.top-banner-add:hover { background: var(--gold2); color: var(--text); }
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5rem;
+  height: 58px;
+  background: rgba(249,246,240,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-links {
+  display: flex;
+  gap: 3.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text3);
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+  padding-bottom: 0.2rem;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active-link { color: var(--gold); }
+.nav-links a.active-link::after { width: 100%; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 5rem 5rem;
+  gap: 5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.hero-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-tag::before {
+  content: '';
+  display: inline-block;
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 6vw, 5.8rem);
+  line-height: 1.02;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-subtitle {
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.9;
+  max-width: 420px;
+  margin-bottom: 3rem;
+}
+
+.hero-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 3.5rem;
+}
+.skill-pill {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  border: 1px solid var(--border2);
+  background: rgba(201,165,90,0.06);
+  font-weight: 400;
+}
+
+.hero-actions { display: flex; gap: 1.5rem; align-items: center; }
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background: var(--text);
+  color: var(--bg);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background 0.3s;
+  font-weight: 500;
+}
+.btn-primary:hover { background: var(--gold); }
+
+.btn-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border2);
+  padding-bottom: 0.2rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+.btn-text:hover { color: var(--gold); border-color: var(--gold); }
+
+/* PORTRAIT */
+.hero-right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.hero-portrait {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 3/4;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.hero-portrait:hover { border-color: var(--gold); }
+
+.portrait-deco {
+  position: absolute;
+  bottom: -1.5rem; right: -1.5rem;
+  width: 55%; height: 55%;
+  border: 1px solid var(--gold);
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.portrait-add {
+  width: 48px; height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--gold);
+  position: relative; z-index: 1;
+}
+.portrait-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  position: relative; z-index: 1;
+}
+
+/* DIVIDER */
+.divider {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5rem;
+  height: 1px;
+  background: var(--border);
+}
+
+/* SECTION */
+.section {
+  padding: 7rem 5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+.section-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  font-style: italic;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* STATS */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  margin-bottom: 6rem;
+}
+.stat-item {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  background: var(--bg2);
+  transition: background 0.3s;
+}
+.stat-item:hover { background: var(--bg3); }
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  font-style: italic;
+}
+.stat-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 0.6rem;
+  display: block;
+}
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.service-card {
+  background: var(--bg2);
+  padding: 2.8rem 2.2rem;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.service-card:hover { background: var(--bg3); }
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  color: var(--border2);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.service-line {
+  width: 28px; height: 1px;
+  background: var(--gold);
+  margin-bottom: 1.2rem;
+  opacity: 0.6;
+}
+.service-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+}
+.service-desc {
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.8;
+}
+
+/* PORTFOLIO */
+.portfolio-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.portfolio-intro {
+  font-size: 0.78rem;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+}
+.portfolio-filters {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.pf-btn {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-right: none;
+  color: var(--text3);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pf-btn:last-child { border-right: 1px solid var(--border); }
+.pf-btn:hover { background: var(--bg3); color: var(--gold); }
+.pf-btn.active { background: var(--text); color: var(--gold2); border-color: var(--text); }
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.portfolio-item {
+  overflow: hidden;
+  background: var(--bg2);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s, opacity 0.4s, transform 0.4s;
+}
+.portfolio-item.hidden-item { opacity: 0; pointer-events: none; transform: scale(0.96); }
+.portfolio-item:hover { background: var(--bg3); }
+.portfolio-item:nth-child(1) { grid-column: span 8; }
+.portfolio-item:nth-child(2) { grid-column: span 4; }
+.portfolio-item:nth-child(3) { grid-column: span 4; }
+.portfolio-item:nth-child(4) { grid-column: span 4; }
+.portfolio-item:nth-child(5) { grid-column: span 4; }
+.portfolio-item:nth-child(6) { grid-column: span 6; }
+.portfolio-item:nth-child(7) { grid-column: span 6; }
+
+.portfolio-placeholder {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+.portfolio-item:nth-child(1) .portfolio-placeholder { min-height: 400px; }
+.portfolio-item:nth-child(6) .portfolio-placeholder,
+.portfolio-item:nth-child(7) .portfolio-placeholder { min-height: 260px; }
+
+.portfolio-add-btn {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--gold);
+  transition: border-color 0.3s, background 0.3s;
+}
+.portfolio-item:hover .portfolio-add-btn {
+  border-color: var(--gold);
+  background: rgba(201,165,90,0.08);
+}
+.portfolio-caption {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,12,10,0.95) 0%, rgba(13,12,10,0.3) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem 1.8rem;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+.overlay-category {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.overlay-category::before {
+  content: '';
+  display: block;
+  width: 16px; height: 1px;
+  background: var(--gold2);
+}
+.overlay-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #fff;
+  font-style: italic;
+}
+.overlay-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+.overlay-btn {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid rgba(196,168,130,0.5);
+  color: var(--gold2);
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  transition: background 0.2s, color 0.2s;
+}
+.overlay-btn:hover { background: var(--gold2); color: var(--text); }
+.overlay-btn.danger { border-color: rgba(255,80,80,0.4); color: #ff8080; }
+.overlay-btn.danger:hover { background: rgba(255,80,80,0.2); }
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,9,8,0.96);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s, visibility 0.35s;
+  padding: 2rem;
+}
+#lightbox.open { opacity: 1; visibility: visible; }
+#lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  position: relative;
+}
+#lightbox-content img, #lightbox-content video {
+  max-width: 90vw;
+  max-height: 82vh;
+  object-fit: contain;
+  display: block;
+  border: 1px solid rgba(196,168,130,0.15);
+}
+#lightbox-close {
+  position: absolute;
+  top: -2.5rem; right: 0;
+  background: none;
+  border: none;
+  color: var(--gold2);
+  font-size: 1.4rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  font-family: 'Jost', sans-serif;
+}
+#lightbox-caption {
+  position: absolute;
+  bottom: -2.2rem; left: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+#lightbox-nav-prev, #lightbox-nav-next {
+  position: fixed;
+  top: 50%; transform: translateY(-50%);
+  background: rgba(139,111,71,0.12);
+  border: 1px solid var(--gold2);
+  color: var(--gold2);
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+#lightbox-nav-prev { left: 1.5rem; }
+#lightbox-nav-next { right: 1.5rem; }
+#lightbox-nav-prev:hover, #lightbox-nav-next:hover { background: var(--gold); border-color: var(--gold); }
+
+/* EDIT TITLE MODAL */
+#editModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,9,8,0.85);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+#editModal.open { opacity: 1; visibility: visible; }
+.edit-modal-box {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  padding: 2.5rem;
+  width: 380px;
+  max-width: 90vw;
+}
+.edit-modal-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+.edit-modal-box input, .edit-modal-box select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s;
+}
+.edit-modal-box input:focus, .edit-modal-box select:focus { border-color: var(--gold); }
+.edit-modal-actions { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
+.edit-save { flex: 1; padding: 0.7rem; background: var(--gold); color: var(--bg); border: none; font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.25s; }
+.edit-save:hover { background: var(--text); }
+.edit-cancel { padding: 0.7rem 1.2rem; background: none; border: 1px solid var(--border2); color: var(--text3); font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.edit-cancel:hover { border-color: var(--text3); color: var(--text); }
+
+/* ABOUT */
+.about-section {
+  background: var(--text);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 7rem 5rem;
+}
+.about-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7rem;
+  align-items: center;
+}
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.45;
+  font-style: italic;
+  color: var(--bg);
+}
+.about-quote span { color: var(--gold2); }
+
+.about-text { font-size: 0.86rem; color: var(--text3); line-height: 1.9; }
+.about-text p { margin-bottom: 1.2rem; }
+
+.about-signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 2rem;
+}
+
+/* CONTACT */
+.contact-outer {
+  padding: 8rem 5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7rem;
+  align-items: start;
+}
+.contact-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+.contact-title em { font-style: italic; color: var(--gold); }
+.contact-sub { font-size: 0.85rem; color: var(--text2); line-height: 1.8; margin-bottom: 3rem; }
+
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-info-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.info-label {
+  font-size: 0.63rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.info-value { font-size: 0.9rem; color: var(--text); }
+.info-value a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+.info-value a:hover { color: var(--gold); }
+
+/* FORM */
+.form-group { margin-bottom: 1.4rem; }
+.form-group label {
+  display: block;
+  font-size: 0.63rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 0.55rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.85rem 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s;
+  resize: vertical;
+  appearance: none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--gold); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text3); }
+.form-group select option { background: var(--bg2); color: var(--text); }
+.form-group textarea { min-height: 130px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-submit {
+  width: 100%;
+  padding: 1rem;
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.form-submit:hover { background: var(--gold2); }
+
+/* FOOTER */
+footer {
+  background: var(--text);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer p { font-size: 0.7rem; color: var(--text3); letter-spacing: 0.1em; }
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--gold2);
+}
+
+/* PAGE DE COUVERTURE */
+.cover-page {
+  position: fixed;
+  inset: 0;
+  background: var(--text);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.cover-page.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cover-logo-zone {
+  width: 280px;
+  height: 280px;
+  border: 1px solid rgba(201,168,76,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+
+.cover-logo-zone:hover { border-color: var(--gold2); }
+
+.cover-logo-add {
+  width: 52px; height: 52px;
+  border: 1px solid var(--gold2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--gold2);
+}
+
+.cover-logo-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.cover-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--gold2);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.cover-subtitle {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+}
+
+.cover-enter {
+  display: inline-block;
+  padding: 0.9rem 3rem;
+  border: 1px solid var(--gold2);
+  color: var(--gold2);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  font-family: 'Jost', sans-serif;
+  transition: background 0.3s, color 0.3s;
+  margin-top: 1rem;
+}
+
+.cover-enter:hover {
+  background: var(--gold2);
+  color: var(--text);
+}
+
+.cover-deco-top {
+  position: absolute;
+  top: 2rem; left: 2rem;
+  width: 60px; height: 60px;
+  border-top: 1px solid rgba(201,168,76,0.2);
+  border-left: 1px solid rgba(201,168,76,0.2);
+}
+
+.cover-deco-bottom {
+  position: absolute;
+  bottom: 2rem; right: 2rem;
+  width: 60px; height: 60px;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  border-right: 1px solid rgba(201,168,76,0.2);
+}
+
+/* ═══════════════════════════════════════
+   SYSTÈME D'ANIMATIONS AVANCÉES
+═══════════════════════════════════════ */
+
+/* ANIMATIONS DE BASE */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,168,130,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(196,168,130,0.12); }
+}
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes charIn {
+  from { opacity: 0; transform: translateY(18px) rotate(4deg); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0) rotate(0deg); filter: blur(0); }
+}
+@keyframes wordIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lineMaskReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+/* HERO ANIMATIONS */
+.hero-left { animation: fadeUp 1s ease both; }
+.hero-right { animation: fadeUp 1s 0.2s ease both; }
+
+/* REVEAL SCROLL — blocs entiers */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left  { opacity: 0; transform: translateX(-48px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(48px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* CHARS ANIMÉS — chaque lettre */
+.anim-chars .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) rotate(3deg);
+  filter: blur(3px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1), filter 0.5s ease;
+}
+.anim-chars.visible .char { opacity: 1; transform: translateY(0) rotate(0); filter: blur(0); }
+
+/* WORDS ANIMÉS — mot par mot */
+.anim-words .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.anim-words .word-inner {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-words.visible .word-inner { opacity: 1; transform: translateY(0); }
+
+/* LINES ANIMÉES — ligne par ligne */
+.anim-lines .line {
+  overflow: hidden;
+  display: block;
+}
+.anim-lines .line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(110%);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-lines.visible .line-inner { opacity: 1; transform: translateY(0); }
+
+/* TYPEWRITER */
+.typewriter {
+  border-right: 2px solid var(--gold);
+  animation: typewriter-cursor 1s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* SHIMMER TEXT */
+.text-shimmer {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold2) 40%, #fff5e0 50%, var(--gold2) 60%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-shimmer.visible {
+  animation: shimmer 3s linear infinite;
+}
+
+/* LIGNE DÉCO ANIMÉE */
+.deco-line-anim {
+  display: block;
+  height: 1px;
+  background: var(--gold);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.deco-line-anim.visible { transform: scaleX(1); }
+
+/* FLOTTEMENT DOUX sur éléments clés */
+.float-anim { animation: float 4s ease-in-out infinite; }
+
+/* PULSE sur bouton CTA */
+.btn-primary { animation: pulse-gold 3s ease-in-out infinite; }
+.btn-primary:hover { animation: none; }
+
+/* HOVER TEXTE GOLD */
+.hover-gold { transition: color 0.3s; }
+.hover-gold:hover { color: var(--gold); }
+
+/* SECTION TITLE UNDERLINE ANIMÉ */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.section-title.title-underline-visible::after { width: 100%; }
+
+/* NOMBRE COMPTEUR BRILLANT */
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  font-style: italic;
+  transition: transform 0.3s;
+}
+.stat-item:hover .stat-num { transform: scale(1.08); }
+
+/* SKILL PILLS ANIMÉES */
+.skill-pill {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.3s, color 0.3s, border-color 0.3s;
+}
+.skill-pill.visible { opacity: 1; transform: scale(1); }
+.skill-pill:hover { background: rgba(139,111,71,0.15); border-color: var(--gold); color: var(--gold); }
+
+/* CARTE SERVICE AMÉLIORÉE */
+.service-card { transition: background 0.3s, transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+.service-card:hover { transform: translateY(-6px); }
+
+/* STAT HOVER */
+.stat-item { transition: background 0.3s, transform 0.3s; }
+.stat-item:hover { transform: scale(1.03); }
+
+/* TESTIMONIAL HOVER */
+.testimonial-card { transition: border-color 0.3s, transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s; }
+.testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(139,111,71,0.1); }
+
+/* FORM FIELDS FOCUS ANIMÉ */
+.form-group input, .form-group textarea, .form-group select {
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(139,111,71,0.1);
+}
+
+/* ABOUT / CONTACT — animations gérées par le système reveal */
+
+/* SERVICE CAT HOVER */
+.srv-cat { transition: opacity 0.3s, transform 0.3s, border-color 0.3s; }
+.srv-cat:hover { border-color: var(--gold2); transform: translateY(-3px); }
+.srv-cat-title { transition: color 0.3s; }
+.srv-cat:hover .srv-cat-title { color: var(--gold); }
+
+/* CONTACT INFO HOVER */
+.contact-info-item { transition: transform 0.3s; }
+.contact-info-item:hover { transform: translateX(6px); }
+.contact-info-item:hover .info-label { color: var(--gold2); }
+
+/* NAV LINKS TRANSITION */
+.nav-links a { transition: color 0.3s, opacity 0.3s; }
+
+/* FORM SUBMIT ARROW */
+.form-submit { position: relative; overflow: hidden; }
+.form-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold2);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.form-submit:hover::before { transform: scaleX(1); transform-origin: left; }
+.form-submit span { position: relative; z-index: 1; }
+
+/* ABOUT SIGNATURE ANIMATED */
+.about-signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 2rem;
+  position: relative;
+  display: inline-block;
+}
+.about-signature::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold2);
+  transition: width 1s 0.3s ease;
+}
+.about-signature.visible::after { width: 100%; }
+
+/* COVER PAGE ANIMATIONS */
+.cover-logo-zone { animation: float 5s ease-in-out infinite; }
+.cover-title { animation: fadeUp 1s 0.3s ease both; }
+.cover-subtitle { animation: fadeUp 1s 0.5s ease both; }
+.cover-enter { animation: fadeUp 1s 0.7s ease both; }
+
+/* HERO TAG LIGNE */
+.hero-tag::before { animation: lineGrow 0.8s 0.5s ease both; }
+
+/* PORTFOLIO ITEM HOVER */
+.portfolio-item {
+  transition: background 0.3s, opacity 0.4s, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.portfolio-item:hover { transform: scale(1.01); z-index: 2; }
+
+/* FOOTER LOGO FLOAT */
+.footer-logo { animation: float 6s ease-in-out infinite; }
+.hero-banner {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 16/10;
+  background: var(--text);
+  border: 1px solid var(--border2);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.hero-banner:hover { border-color: var(--gold); }
+.banner-inner { width: 100%; height: 100%; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+.banner-corner {
+  position: absolute;
+  width: 22px; height: 22px;
+}
+.banner-corner.tl { top: 12px; left: 12px; border-top: 1px solid var(--gold2); border-left: 1px solid var(--gold2); }
+.banner-corner.tr { top: 12px; right: 12px; border-top: 1px solid var(--gold2); border-right: 1px solid var(--gold2); }
+.banner-corner.bl { bottom: 12px; left: 12px; border-bottom: 1px solid var(--gold2); border-left: 1px solid var(--gold2); }
+.banner-corner.br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--gold2); border-right: 1px solid var(--gold2); }
+.banner-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.banner-add-icon {
+  width: 46px; height: 46px;
+  border: 1px solid var(--gold2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  color: var(--gold2);
+  opacity: 0.7;
+}
+.banner-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.banner-sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+.banner-brand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-top: 1px solid rgba(196,168,130,0.15);
+}
+.banner-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--gold2);
+  opacity: 0.6;
+}
+.banner-brand-year {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.2);
+}
+.hero-banner img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute; inset: 0;
+}
+
+/* SERVICES ONGLETS */
+.srv-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.srv-tab {
+  flex: 1;
+  min-width: 140px;
+  padding: 1rem 0.8rem;
+  background: var(--bg2);
+  border: none;
+  border-right: 1px solid var(--border);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 400;
+}
+.srv-tab:last-child { border-right: none; }
+.srv-tab:hover { background: var(--bg3); color: var(--gold); }
+.srv-tab.active { background: var(--text); color: var(--gold2); }
+
+.srv-panel { display: none; border: 1px solid var(--border); border-top: none; padding: 2.5rem; }
+.srv-panel.active { display: block; }
+
+.srv-cats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.srv-cat {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+.srv-cat-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--gold3);
+}
+.srv-list {
+  list-style: none;
+  padding: 0;
+}
+.srv-list li {
+  font-size: 0.78rem;
+  color: var(--text2);
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--bg3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.srv-list li::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 4px;
+  background: var(--gold2);
+  flex-shrink: 0;
+}
+
+/* CUSTOM CURSOR */
+*, *::before, *::after { cursor: none !important; }
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+  mix-blend-mode: multiply;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: width 0.35s ease, height 0.35s ease, border-color 0.3s, transform 0.05s linear;
+  opacity: 0.5;
+}
+body.cursor-hover #cursor { width: 6px; height: 6px; background: var(--gold2); }
+body.cursor-hover #cursor-ring { width: 52px; height: 52px; opacity: 0.2; }
+
+/* BACK TO TOP */
+#backToTop {
+  position: fixed;
+  bottom: 2.5rem; right: 2.5rem;
+  width: 46px; height: 46px;
+  background: var(--text);
+  border: 1px solid var(--gold2);
+  color: var(--gold2);
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.35s, transform 0.35s, visibility 0.35s, background 0.25s;
+  text-decoration: none;
+}
+#backToTop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+#backToTop:hover { background: var(--gold); border-color: var(--gold); color: var(--bg); }
+
+/* HAMBURGER MOBILE */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 200;
+  position: absolute;
+  right: 1.5rem;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--text);
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28,28,28,0.97);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.mobile-nav.open { opacity: 1; pointer-events: all; }
+.mobile-nav a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold2);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: color 0.3s, transform 0.5s ease, opacity 0.5s ease;
+}
+.mobile-nav.open a { transform: translateY(0); opacity: 1; }
+.mobile-nav.open a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav.open a:nth-child(2) { transition-delay: 0.18s; }
+.mobile-nav.open a:nth-child(3) { transition-delay: 0.26s; }
+.mobile-nav.open a:nth-child(4) { transition-delay: 0.34s; }
+.mobile-nav a:hover { color: #fff; }
+.mobile-nav-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: none; border: none;
+  color: var(--gold2); font-size: 1.8rem; line-height: 1;
+  padding: 0.5rem;
+}
+
+/* SCROLL REVEAL — (voir bloc animations ci-dessus) */
+
+/* PROGRESS BAR */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* TEMOIGNAGES */
+.testimonials-section {
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 7rem 5rem;
+}
+.testimonials-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.testimonial-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 2rem 2rem 1.8rem;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.testimonial-card:hover { border-color: var(--gold2); transform: translateY(-4px); }
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: var(--gold3);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+.testimonial-text {
+  font-size: 0.85rem;
+  color: var(--text2);
+  line-height: 1.85;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+.testimonial-author {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 500;
+}
+.testimonial-role {
+  font-size: 0.65rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* FOOTER AMÉLIORÉ */
+.footer-social {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.footer-social a {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(196,168,130,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text3);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  transition: border-color 0.3s, color 0.3s;
+}
+.footer-social a:hover { border-color: var(--gold2); color: var(--gold2); }
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* STICKY NAV scrolled */
+nav.scrolled {
+  height: 50px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+nav { transition: height 0.3s, box-shadow 0.3s; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 0 2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-nav { display: flex; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+  .hero-right { display: none; }
+  .section { padding: 5rem 2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { border-bottom: 1px solid var(--border); }
+  .srv-cats { grid-template-columns: 1fr; }
+  .srv-tabs { flex-direction: column; }
+  .srv-tab { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-banner { max-width: 100%; aspect-ratio: 16/9; }
+  .portfolio-item:nth-child(n) { grid-column: span 1; }
+  .portfolio-item { border: 1px solid var(--border); }
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .about-section { padding: 5rem 2rem; }
+  .contact-outer { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+  footer { padding: 2rem; }
+  .footer-inner { flex-direction: column; gap: 1.2rem; text-align: center; }
+  .testimonials-section { padding: 5rem 2rem; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  #cursor, #cursor-ring { display: none; }
+  *, *::before, *::after { cursor: auto !important; }
+  #backToTop { bottom: 1.5rem; right: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSEUR PERSONNALISÉ -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- BARRE DE PROGRESSION -->
+<div id="progress-bar"></div>
+
+<!-- BOUTON RETOUR EN HAUT -->
+<a href="#" id="backToTop" aria-label="Retour en haut">↑</a>
+
+<!-- MENU MOBILE -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#portfolio" onclick="closeMobileNav()">Portfolio</a>
+  <a href="#about" onclick="closeMobileNav()">À propos</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- PAGE DE COUVERTURE -->
+<div class="cover-page" id="coverPage">
+  <div class="cover-deco-top"></div>
+  <div class="cover-deco-bottom"></div>
+
+  <div class="cover-logo-zone" onclick="addLogo(this)">
+    <div class="cover-logo-add">+</div>
+    <span class="cover-logo-label">Ajouter ton logo</span>
+  </div>
+
+  <div class="cover-title">Royaume Studio X</div>
+  <div class="cover-subtitle">Créateur Visuel — Abidjan, CI</div>
+
+  <button class="cover-enter" onclick="enterSite()">Entrer dans le portfolio →</button>
+</div>
+
+<!-- BANNIERE TOP -->
+<div class="top-banner" id="topBanner">
+  <div class="top-banner-overlay"></div>
+  <div class="top-banner-corner tl"></div>
+  <div class="top-banner-corner tr"></div>
+  <div class="top-banner-corner bl"></div>
+  <div class="top-banner-corner br"></div>
+  <div class="top-banner-title">Royaume <span>Studio</span> X</div>
+  <button class="top-banner-add" onclick="addBannerTop(event)">+ Ajouter une image</button>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="hero" style="position:relative;">
+  <canvas id="heroParticles" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.4;"></canvas>
+  <div class="hero-left" style="position:relative;z-index:1;">
+    <p class="hero-tag anim-chars" data-text="Royaume Studio X — Abidjan, CI">Royaume Studio X — Abidjan, CI</p>
+    <h1 class="hero-title anim-lines" style="margin-bottom:2rem;">
+      <span class="line"><span class="line-inner">Kouassi</span></span>
+      <span class="line"><span class="line-inner">Kouadio</span></span>
+      <span class="line"><span class="line-inner"><em class="text-shimmer">Franck</em></span></span>
+    </h1>
+    <p class="hero-subtitle reveal" style="transition-delay:0.4s;">
+      Vidéaste, graphiste, droniste et réalisateur. Je transforme vos idées en images qui parlent, qui touchent, qui restent.
+    </p>
+    <div class="hero-skills" id="heroSkills">
+      <span class="skill-pill">Montage Vidéo</span>
+      <span class="skill-pill">Graphisme</span>
+      <span class="skill-pill">Drone</span>
+      <span class="skill-pill">Retouche Photo</span>
+      <span class="skill-pill">Streaming</span>
+      <span class="skill-pill">Community</span>
+      <span class="skill-pill">Réalisation</span>
+    </div>
+    <div class="hero-actions reveal" style="transition-delay:0.8s;">
+      <a href="#portfolio" class="btn-primary">Voir mes travaux</a>
+      <a href="#contact" class="btn-text">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal reveal-delay-2 float-anim" style="position:relative;z-index:1;">
+    <div class="hero-banner" onclick="addBanner(this)" id="heroBanner">
+      <div class="banner-inner">
+        <div class="banner-corner tl"></div>
+        <div class="banner-corner tr"></div>
+        <div class="banner-corner bl"></div>
+        <div class="banner-corner br"></div>
+        <div class="banner-content">
+          <div class="banner-add-icon">+</div>
+          <span class="banner-label">Ajouter ta bannière / photo</span>
+          <span class="banner-sub">Image • Format libre</span>
+        </div>
+        <div class="banner-brand">
+          <span class="banner-brand-name">Royaume Studio X</span>
+          <span class="banner-brand-year">2018 — 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="section" style="padding-bottom: 0;">
+  <div class="stats-row">
+    <div class="stat-item reveal">
+      <span class="stat-num" style="font-size:2.2rem;" data-count-text="2018 — 2026">2018 — 2026</span>
+      <span class="stat-label">Années d'expérience</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <span class="stat-num" data-count="50">0</span><span class="stat-num" style="font-size:2.5rem;">+</span>
+      <span class="stat-label">Projets réalisés</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-num" data-count="8">0</span>
+      <span class="stat-label">Domaines de compétence</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <span class="stat-num" data-count="100">0</span><span class="stat-num" style="font-size:2.5rem;">%</span>
+      <span class="stat-label">Clients satisfaits</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-header reveal">
+    <span class="section-num">01.</span>
+    <h2 class="section-title">Mes <em>Services</em></h2>
+  </div>
+
+  <!-- ONGLETS SERVICES -->
+  <div class="srv-tabs">
+    <button class="srv-tab active" onclick="openService(this,'srv-graphisme')">01 — Graphisme</button>
+    <button class="srv-tab" onclick="openService(this,'srv-video')">02 — Cadreur & Montage</button>
+    <button class="srv-tab" onclick="openService(this,'srv-photo')">03 — Photographie</button>
+    <button class="srv-tab" onclick="openService(this,'srv-drone')">04 — Drone & Aérien</button>
+    <button class="srv-tab" onclick="openService(this,'srv-streaming')">05 — Régie Streaming</button>
+    <button class="srv-tab" onclick="openService(this,'srv-community')">06 — Community Mgmt</button>
+  </div>
+
+  <!-- GRAPHISME -->
+  <div class="srv-panel active" id="srv-graphisme">
+    <div class="srv-cats">
+      <div class="srv-cat">
+        <div class="srv-cat-title">Identité visuelle (Branding)</div>
+        <ul class="srv-list">
+          <li>Création de logo</li>
+          <li>Charte graphique (couleurs, typographies, style)</li>
+          <li>Déclinaisons du logo (noir/blanc, icône, favicon)</li>
+          <li>Carte de visite</li>
+          <li>Guide de marque (brand book)</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Supports print</div>
+        <ul class="srv-list">
+          <li>Flyers / prospectus</li>
+          <li>Affiches</li>
+          <li>Brochures / catalogues</li>
+          <li>Dépliants</li>
+          <li>Bannières publicitaires</li>
+          <li>Roll-up (kakemono)</li>
+          <li>Packaging (emballage produit)</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Design digital</div>
+        <ul class="srv-list">
+          <li>Design de site web</li>
+          <li>Landing page</li>
+          <li>UI/UX design</li>
+          <li>Maquettes (wireframes)</li>
+          <li>Design d'application mobile</li>
+          <li>Bannières web</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Motion design & vidéo</div>
+        <ul class="srv-list">
+          <li>Animation de logo</li>
+          <li>Vidéo publicitaire animée</li>
+          <li>Stories animées</li>
+          <li>Intro YouTube</li>
+          <li>Motion graphics</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Retouche & manipulation photo</div>
+        <ul class="srv-list">
+          <li>Retouche photo (peau, lumière)</li>
+          <li>Color grading</li>
+          <li>Photomontage</li>
+          <li>Effets visuels</li>
+          <li>Correction de couleurs</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Design produit & merchandising</div>
+        <ul class="srv-list">
+          <li>Design t-shirt / hoodie</li>
+          <li>Branding produit</li>
+          <li>Packaging</li>
+          <li>Étiquettes</li>
+          <li>Mockups produits</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CADREUR & MONTAGE VIDÉO -->
+  <div class="srv-panel" id="srv-video">
+    <div class="srv-cats">
+      <div class="srv-cat">
+        <div class="srv-cat-title">Tournage vidéo</div>
+        <ul class="srv-list">
+          <li>Clips musicaux</li>
+          <li>Événements (mariage, anniversaire, concert)</li>
+          <li>Interviews</li>
+          <li>Vidéos d'entreprise</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Montage professionnel</div>
+        <ul class="srv-list">
+          <li>Spot publicitaire</li>
+          <li>Vidéo institutionnelle</li>
+          <li>Clip musical</li>
+          <li>Documentaire</li>
+          <li>Teaser / bande-annonce</li>
+          <li>After movie événement</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Post-production</div>
+        <ul class="srv-list">
+          <li>Étalonnage couleur</li>
+          <li>Sound design</li>
+          <li>Sous-titrage</li>
+          <li>Motion graphics intégrés</li>
+          <li>Export multi-formats</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Réalisation cinématique</div>
+        <ul class="srv-list">
+          <li>Court-métrage</li>
+          <li>Vidéo corporate</li>
+          <li>Reportage</li>
+          <li>Vidéo événementielle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTOGRAPHIE -->
+  <div class="srv-panel" id="srv-photo">
+    <div class="srv-cats">
+      <div class="srv-cat">
+        <div class="srv-cat-title">Photographie de mariage</div>
+        <ul class="srv-list">
+          <li>Cérémonie civile & religieuse</li>
+          <li>Séance couple (before/after)</li>
+          <li>Réception & soirée</li>
+          <li>Album photo mariage</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Photographie de dot & cérémonies</div>
+        <ul class="srv-list">
+          <li>Dot traditionnelle</li>
+          <li>Fiançailles</li>
+          <li>Baptême / christening</li>
+          <li>Funérailles & commémorations</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Photographie événementielle</div>
+        <ul class="srv-list">
+          <li>Anniversaires & fêtes</li>
+          <li>Concerts & spectacles</li>
+          <li>Conférences & séminaires</li>
+          <li>Galas & soirées</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Shooting photo mode</div>
+        <ul class="srv-list">
+          <li>Shooting mode / fashion</li>
+          <li>Look book collection</li>
+          <li>Shooting influenceur</li>
+          <li>Shooting beauté</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Photo d'entreprise</div>
+        <ul class="srv-list">
+          <li>Portrait professionnel</li>
+          <li>Photo équipe / corporate</li>
+          <li>Photo produit</li>
+          <li>Reportage d'entreprise</li>
+          <li>Photo institutionnelle</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Portrait & artistique</div>
+        <ul class="srv-list">
+          <li>Portrait studio</li>
+          <li>Portrait en extérieur</li>
+          <li>Photo artistique</li>
+          <li>Photo grossesse / famille</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRONE -->
+  <div class="srv-panel" id="srv-drone">
+    <div class="srv-cats">
+      <div class="srv-cat">
+        <div class="srv-cat-title">Prises de vue aériennes</div>
+        <ul class="srv-list">
+          <li>Survol événements</li>
+          <li>Immobilier & architecture</li>
+          <li>Paysages & nature</li>
+          <li>Chantiers & infrastructures</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Vidéo drone cinématique</div>
+        <ul class="srv-list">
+          <li>Films & clips musicaux</li>
+          <li>Spot publicitaire aérien</li>
+          <li>Reportage événementiel</li>
+          <li>Vidéo institutionnelle</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Services spéciaux</div>
+        <ul class="srv-list">
+          <li>Cartographie aérienne</li>
+          <li>Inspection de bâtiments</li>
+          <li>Couverture mariage vue du ciel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAMING -->
+  <div class="srv-panel" id="srv-streaming">
+    <div class="srv-cats">
+      <div class="srv-cat">
+        <div class="srv-cat-title">Régie live</div>
+        <ul class="srv-list">
+          <li>Diffusion multi-plateformes (YouTube, Facebook, TikTok)</li>
+          <li>Setup technique complet</li>
+          <li>Régie multi-caméras</li>
+          <li>Mixage son en direct</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Événements live</div>
+        <ul class="srv-list">
+          <li>Conférences & séminaires</li>
+          <li>Concerts & spectacles</li>
+          <li>Cérémonies & galas</li>
+          <li>Émissions en direct</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMUNITY -->
+  <div class="srv-panel" id="srv-community">
+    <div class="srv-cats">
+      <div class="srv-cat">
+        <div class="srv-cat-title">Gestion des réseaux sociaux</div>
+        <ul class="srv-list">
+          <li>Instagram, Facebook, TikTok, LinkedIn</li>
+          <li>Calendrier éditorial</li>
+          <li>Publication & modération</li>
+          <li>Croissance d'audience</li>
+        </ul>
+      </div>
+      <div class="srv-cat">
+        <div class="srv-cat-title">Création de contenu</div>
+        <ul class="srv-list">
+          <li>Visuels pour réseaux sociaux</li>
+          <li>Reels / TikTok / Shorts</li>
+          <li>Campagnes sponsorisées</li>
+          <li>Stratégie digitale</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO -->
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-nav-prev" onclick="lbNav(-1)">‹</button>
+  <div id="lightbox-content">
+    <button id="lightbox-close" onclick="closeLightbox()">✕ Fermer</button>
+    <div id="lightbox-caption"></div>
+  </div>
+  <button id="lightbox-nav-next" onclick="lbNav(1)">›</button>
+</div>
+
+<!-- EDIT MODAL -->
+<div id="editModal">
+  <div class="edit-modal-box">
+    <h3>Modifier le projet</h3>
+    <input type="text" id="editTitle" placeholder="Titre du projet">
+    <select id="editCategory">
+      <option value="Vidéo / Réalisation">Vidéo / Réalisation</option>
+      <option value="Graphisme">Graphisme</option>
+      <option value="Drone">Drone</option>
+      <option value="Photo">Photo</option>
+      <option value="Streaming">Streaming</option>
+      <option value="Montage">Montage</option>
+      <option value="Community">Community</option>
+    </select>
+    <div class="edit-modal-actions">
+      <button class="edit-cancel" onclick="closeEditModal()">Annuler</button>
+      <button class="edit-save" onclick="saveEdit()">Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="portfolio">
+  <div class="section-header reveal">
+    <span class="section-num">02.</span>
+    <h2 class="section-title">Mes <em>Travaux</em></h2>
+  </div>
+
+  <div class="portfolio-toolbar">
+    <p class="portfolio-intro">Clique sur + pour ajouter · Hover pour agrandir ou modifier · Filtre par catégorie</p>
+    <div class="portfolio-filters">
+      <button class="pf-btn active" data-filter="all">Tout</button>
+      <button class="pf-btn" data-filter="Vidéo / Réalisation">Vidéo</button>
+      <button class="pf-btn" data-filter="Graphisme">Graphisme</button>
+      <button class="pf-btn" data-filter="Drone">Drone</button>
+      <button class="pf-btn" data-filter="Photo">Photo</button>
+      <button class="pf-btn" data-filter="Montage">Montage</button>
+    </div>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+    <div class="portfolio-item reveal" data-category="Vidéo / Réalisation" data-title="Projet Principal" data-idx="0">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet Principal', 'Vidéo / Réalisation')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Projet principal</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Vidéo / Réalisation</span>
+        <p class="overlay-title">Projet Principal</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,0)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,0)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[0],'Projet Principal','Vidéo / Réalisation');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,0)">Retirer</button>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-1" data-category="Graphisme" data-title="Projet 2" data-idx="1">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet 2', 'Graphisme')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Graphisme</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Graphisme</span>
+        <p class="overlay-title">Projet 2</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,1)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,1)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[1],'Projet 2','Graphisme');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,1)">Retirer</button>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-1" data-category="Drone" data-title="Projet 3" data-idx="2">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet 3', 'Drone')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Drone</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Drone</span>
+        <p class="overlay-title">Projet 3</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,2)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,2)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[2],'Projet 3','Drone');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,2)">Retirer</button>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-2" data-category="Photo" data-title="Projet 4" data-idx="3">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet 4', 'Photo')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Photo</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Photo</span>
+        <p class="overlay-title">Projet 4</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,3)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,3)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[3],'Projet 4','Photo');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,3)">Retirer</button>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-2" data-category="Streaming" data-title="Projet 5" data-idx="4">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet 5', 'Streaming')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Streaming</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Streaming</span>
+        <p class="overlay-title">Projet 5</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,4)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,4)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[4],'Projet 5','Streaming');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,4)">Retirer</button>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-3" data-category="Montage" data-title="Projet 6" data-idx="5">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet 6', 'Montage')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Montage</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Montage</span>
+        <p class="overlay-title">Projet 6</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,5)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,5)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[5],'Projet 6','Montage');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,5)">Retirer</button>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal reveal-delay-3" data-category="Vidéo / Réalisation" data-title="Projet 7" data-idx="6">
+      <div class="portfolio-placeholder" onclick="addMedia(this, 'Projet 7', 'Réalisation')">
+        <div class="portfolio-add-btn">+</div>
+        <span class="portfolio-caption">Réalisation</span>
+      </div>
+      <div class="portfolio-overlay">
+        <span class="overlay-category">Réalisation</span>
+        <p class="overlay-title">Projet 7</p>
+        <div class="overlay-actions">
+          <button class="overlay-btn" onclick="openLightboxItem(event,6)">Agrandir</button>
+          <button class="overlay-btn" onclick="openEditModal(event,6)">Modifier</button>
+          <button class="overlay-btn" onclick="addMedia(document.querySelectorAll('.portfolio-placeholder')[6],'Projet 7','Réalisation');event.stopPropagation()">Changer</button>
+          <button class="overlay-btn danger" onclick="removeMedia(event,6)">Retirer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-quote anim-lines">
+      <span class="line"><span class="line-inner">"L'image est mon langage,</span></span>
+      <span class="line"><span class="line-inner"><span style="color:var(--gold2)">la créativité</span> ma signature."</span></span>
+    </div>
+    <div class="about-text">
+      <p class="reveal" style="transition-delay:0.1s;">Je suis Kouassi Kouadio Franck, créateur visuel basé à Abidjan. Avec plus de 5 ans d'expérience dans l'image et la communication, je couvre l'ensemble de la chaîne de création — de la prise de vue à la diffusion.</p>
+      <p class="reveal" style="transition-delay:0.25s;">Que ce soit derrière une caméra, aux commandes d'un drone, devant un écran de montage ou à la régie d'un live, mon objectif reste le même : livrer un résultat qui dépasse les attentes.</p>
+      <div class="about-signature reveal" style="transition-delay:0.4s;">Kouassi Franck</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-outer">
+    <div>
+      <h2 class="contact-title anim-lines reveal">
+        <span class="line"><span class="line-inner">Parlons de</span></span>
+        <span class="line"><span class="line-inner">votre <em>projet</em></span></span>
+      </h2>
+      <p class="contact-sub reveal" style="transition-delay:0.2s;">Vous avez un projet vidéo, une identité visuelle à créer, un événement à couvrir ? Écrivez-moi, je vous réponds rapidement.</p>
+      <div class="contact-info">
+        <div class="contact-info-item reveal" style="transition-delay:0.1s;">
+          <span class="info-label">Email</span>
+          <span class="info-value"><a href="mailto:kouassikouadiofranck12@gmail.com">kouassikouadiofranck12@gmail.com</a></span>
+        </div>
+        <div class="contact-info-item reveal" style="transition-delay:0.2s;">
+          <span class="info-label">WhatsApp</span>
+          <span class="info-value"><a href="https://wa.me/2250749625471" target="_blank">+225 07 49 625 471</a></span>
+        </div>
+        <div class="contact-info-item reveal" style="transition-delay:0.3s;">
+          <span class="info-label">Localisation</span>
+          <span class="info-value">Abidjan, Côte d'Ivoire</span>
+        </div>
+        <div class="contact-info-item reveal" style="transition-delay:0.4s;">
+          <span class="info-label">Disponibilité</span>
+          <span class="info-value" style="color: var(--gold);">● Ouvert aux projets</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-row reveal" style="transition-delay:0.05s;">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" id="formPrenom" placeholder="Ex : Marie">
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" id="formNom" placeholder="Ex : Konan">
+        </div>
+      </div>
+      <div class="form-group reveal" style="transition-delay:0.15s;">
+        <label>Email</label>
+        <input type="email" id="formEmail" placeholder="marie@email.com">
+      </div>
+      <div class="form-group reveal" style="transition-delay:0.22s;">
+        <label>Type de projet</label>
+        <select id="formType">
+          <option value="">Sélectionner...</option>
+          <option>Montage vidéo</option>
+          <option>Graphisme</option>
+          <option>Prise de vue drone</option>
+          <option>Retouche photo</option>
+          <option>Régie streaming</option>
+          <option>Community management</option>
+          <option>Réalisation</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group reveal" style="transition-delay:0.3s;">
+        <label>Votre message</label>
+        <textarea id="formMessage" placeholder="Décrivez votre projet, vos attentes..."></textarea>
+      </div>
+      <button class="form-submit reveal" style="transition-delay:0.38s;" onclick="sendForm()">Envoyer le message →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" style="
+  position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--text); border:1px solid var(--gold2); color:var(--gold2);
+  padding:1rem 2.5rem; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+  z-index:99999; transition:transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
+  opacity:0; pointer-events:none; white-space:nowrap;
+">✓ &nbsp; Message envoyé avec succès</div>
+
+<!-- TEMOIGNAGES -->
+<section class="testimonials-section" id="temoignages">
+  <div class="testimonials-inner">
+    <div class="section-header reveal">
+      <span class="section-num">04.</span>
+      <h2 class="section-title">Ils me font <em>confiance</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Franck a réalisé notre clip musical avec une maîtrise visuelle impressionnante. Chaque plan était pensé, chaque couleur maîtrisée. Le résultat a dépassé toutes nos attentes.</p>
+        <p class="testimonial-author">Artiste musicien</p>
+        <p class="testimonial-role">Clip musical — Abidjan</p>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Notre événement corporate a été couvert de façon exceptionnelle — photos, vidéo, drone. Franck est professionnel, discret et livre un travail de haute qualité.</p>
+        <p class="testimonial-author">Responsable communication</p>
+        <p class="testimonial-role">Entreprise — Côte d'Ivoire</p>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Le graphisme de notre identité de marque est parfait. Logo, charte, supports print — tout est cohérent et élégant. Je recommande Royaume Studio X sans hésitation.</p>
+        <p class="testimonial-author">Entrepreneur</p>
+        <p class="testimonial-role">Branding — Abidjan</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p style="font-size: 0.7rem; color: var(--text3); letter-spacing: 0.1em;">© 2025 Royaume Studio X — Tous droits réservés</p>
+      <div class="footer-social">
+        <a href="https://wa.me/2250749625471" target="_blank" title="WhatsApp">WA</a>
+        <a href="mailto:kouassikouadiofranck12@gmail.com" title="Email">EM</a>
+        <a href="#" title="Instagram">IG</a>
+        <a href="#" title="TikTok">TK</a>
+      </div>
+    </div>
+    <div class="footer-logo">Royaume Studio X</div>
+    <p style="font-size: 0.7rem; color: var(--text3); letter-spacing: 0.1em;">Abidjan, Côte d'Ivoire</p>
+  </div>
+</footer>
+
+<script>
+// ── CURSEUR PERSONNALISÉ ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = -100, my = -100, rx = -100, ry = -100;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+document.querySelectorAll('a,button,[onclick]').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+// ── BARRE DE PROGRESSION ──
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  progressBar.style.width = Math.min(pct, 100) + '%';
+});
+
+// ── RETOUR EN HAUT ──
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 600) btt.classList.add('show'); else btt.classList.remove('show');
+});
+btt.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+// ── NAV SCROLLED ──
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) mainNav.classList.add('scrolled'); else mainNav.classList.remove('scrolled');
+});
+
+// ── MENU MOBILE ──
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ══════════════════════════════════════
+// MOTEUR D'ANIMATIONS TEXTE
+// ══════════════════════════════════════
+
+// ── SPLIT CHARS (lettre par lettre) ──
+function splitChars(el) {
+  const text = el.textContent;
+  el.innerHTML = '';
+  [...text].forEach((ch, i) => {
+    const span = document.createElement('span');
+    span.className = 'char';
+    span.textContent = ch === ' ' ? '\u00A0' : ch;
+    span.style.transitionDelay = (0.03 * i) + 's';
+    el.appendChild(span);
+  });
+}
+
+// ── INIT HERO ANIMATIONS (immédiat) ──
+function initHeroAnims() {
+  // Hero tag — chars
+  const tag = document.querySelector('.hero-tag.anim-chars');
+  if (tag) { splitChars(tag); setTimeout(() => tag.classList.add('visible'), 300); }
+
+  // Hero title — lines
+  const title = document.querySelector('.hero-title.anim-lines');
+  if (title) {
+    title.querySelectorAll('.line-inner').forEach((li, i) => {
+      li.style.transitionDelay = (0.15 + i * 0.18) + 's';
+    });
+    setTimeout(() => title.classList.add('visible'), 400);
+  }
+
+  // Skills pills
+  const pills = document.querySelectorAll('#heroSkills .skill-pill');
+  pills.forEach((pill, i) => {
+    pill.style.transitionDelay = (0.9 + i * 0.08) + 's';
+    setTimeout(() => pill.classList.add('visible'), 10);
+  });
+
+  // shimmer
+  document.querySelectorAll('.text-shimmer').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 800);
+  });
+
+  // Hero left reveals
+  document.querySelectorAll('.hero-left .reveal').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 200);
+  });
+  document.querySelectorAll('.hero-right.reveal').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 600);
+  });
+}
+
+// ── SCROLL REVEAL — tous les éléments ──
+const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .anim-lines, .anim-words, .anim-chars:not(.hero-tag), .about-quote, .about-text, .deco-line-anim');
+
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+
+    if (el.classList.contains('anim-chars')) {
+      splitChars(el);
+      setTimeout(() => el.classList.add('visible'), 80);
+    } else if (el.classList.contains('anim-lines')) {
+      el.querySelectorAll('.line-inner').forEach((li, i) => {
+        li.style.transitionDelay = (0.08 + i * 0.14) + 's';
+      });
+      el.classList.add('visible');
+    } else if (el.classList.contains('anim-words')) {
+      el.querySelectorAll('.word-inner').forEach((wi, i) => {
+        wi.style.transitionDelay = (i * 0.07) + 's';
+      });
+      el.classList.add('visible');
+    } else {
+      el.classList.add('visible');
+    }
+
+    // Underline sur section-title
+    if (el.querySelector && el.querySelector('.section-title')) {
+      el.querySelector('.section-title').classList.add('title-underline-visible');
+    }
+    if (el.classList.contains('section-title')) {
+      el.classList.add('title-underline-visible');
+    }
+
+    revealObs.unobserve(el);
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+allReveals.forEach(el => revealObs.observe(el));
+
+// Section titles
+document.querySelectorAll('.section-title').forEach(el => revealObs.observe(el));
+
+// ── COMPTEURS ANIMÉS ──
+function animateCount(el, target, duration) {
+  let start = 0;
+  const step = Math.ceil(target / (duration / 16));
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target; clearInterval(timer); }
+    else { el.textContent = start; }
+  }, 16);
+}
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.getAttribute('data-count'));
+      if (!isNaN(target)) animateCount(el, target, 1400);
+      countObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+// ── BANNIERE TOP ──
+function addBannerTop(e) {
+  e.stopPropagation();
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(ev) {
+    const file = ev.target.files[0]; if (!file) return;
+    fileToBase64(file, function(base64) {
+      localStorage.setItem('rsx_top_banner', base64); applyTopBanner(base64);
+    });
+  };
+  input.click();
+}
+function applyTopBanner(base64) {
+  const banner = document.getElementById('topBanner');
+  let img = banner.querySelector('img.banner-bg');
+  if (!img) { img = document.createElement('img'); img.className = 'banner-bg'; banner.insertBefore(img, banner.firstChild); }
+  img.src = base64;
+}
+
+// ── ANIMATION NAV ACTIVE AU SCROLL ──
+function updateActiveNav() {
+  const sections = ['services','portfolio','about','contact'];
+  const links = document.querySelectorAll('.nav-links a');
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  links.forEach(a => {
+    a.classList.remove('active-link');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active-link');
+  });
+}
+window.addEventListener('scroll', updateActiveNav);
+
+// ── ONGLETS SERVICES ──
+function openService(btn, panelId) {
+  document.querySelectorAll('.srv-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.srv-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+// ── BANNIÈRE HERO ──
+function addBanner(el) {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(e) {
+    const file = e.target.files[0]; if (!file) return;
+    fileToBase64(file, function(base64) {
+      localStorage.setItem('rsx_banner', base64); applyBanner(el, base64);
+    });
+  };
+  input.click();
+}
+function applyBanner(el, base64) {
+  el.innerHTML = '';
+  const img = document.createElement('img');
+  img.src = base64; img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+  el.appendChild(img);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ── PAGE DE COUVERTURE ──
+function enterSite() {
+  const cover = document.getElementById('coverPage');
+  cover.classList.add('hidden');
+  setTimeout(() => { cover.style.display = 'none'; }, 800);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── UTILITAIRE : Convertir fichier en base64 ──
+function fileToBase64(file, callback) {
+  const reader = new FileReader();
+  reader.onload = function(e) { callback(e.target.result); };
+  reader.readAsDataURL(file);
+}
+
+// ── LOGO ──
+function addLogo(el) {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(e) {
+    const file = e.target.files[0]; if (!file) return;
+    fileToBase64(file, function(base64) {
+      localStorage.setItem('rsx_logo', base64); applyLogo(el, base64);
+    });
+  };
+  input.click();
+}
+function applyLogo(el, base64) {
+  el.innerHTML = ''; el.style.padding = '0'; el.style.background = 'transparent'; el.style.border = 'none';
+  const img = document.createElement('img');
+  img.src = base64; img.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;display:block;';
+  el.appendChild(img);
+}
+
+// ── PORTRAIT ──
+function addPortrait(el) {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(e) {
+    const file = e.target.files[0]; if (!file) return;
+    fileToBase64(file, function(base64) {
+      localStorage.setItem('rsx_portrait', base64); applyPortrait(el, base64);
+    });
+  };
+  input.click();
+}
+function applyPortrait(el, base64) {
+  el.innerHTML = ''; el.style.padding = '0';
+  const img = document.createElement('img');
+  img.src = base64; img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+  el.appendChild(img);
+}
+
+// ── PORTFOLIO MEDIA ──
+function addMedia(el, title, category) {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*,video/*';
+  input.onchange = function(e) {
+    const file = e.target.files[0]; if (!file) return;
+    const items = document.querySelectorAll('.portfolio-placeholder');
+    let idx = -1;
+    items.forEach((item, i) => { if (item === el) idx = i; });
+    fileToBase64(file, function(base64) {
+      const saved = JSON.parse(localStorage.getItem('rsx_portfolio') || '{}');
+      saved[idx] = { base64, title, category, type: file.type };
+      localStorage.setItem('rsx_portfolio', JSON.stringify(saved));
+      applyMedia(el, base64, file.type, title);
+    });
+  };
+  input.click();
+}
+function applyMedia(el, base64, type, title) {
+  el.style.padding = '0'; el.style.minHeight = '0'; el.innerHTML = '';
+  if (type && type.startsWith('video/')) {
+    const video = document.createElement('video');
+    video.src = base64; video.controls = true;
+    video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;min-height:220px;';
+    el.appendChild(video);
+  } else {
+    const img = document.createElement('img');
+    img.src = base64; img.alt = title || '';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    el.appendChild(img);
+  }
+}
+
+// ── SUPPRIMER MEDIA ──
+function removeMedia(event, idx) {
+  event.stopPropagation();
+  const items = document.querySelectorAll('.portfolio-item');
+  const item = items[idx];
+  const ph = item.querySelector('.portfolio-placeholder');
+  const overlay = item.querySelector('.portfolio-overlay');
+  const cats = ['Vidéo / Réalisation','Graphisme','Drone','Photo','Streaming','Montage','Réalisation'];
+  const caps = ['Projet principal','Graphisme','Drone','Photo','Streaming','Montage','Réalisation'];
+  ph.innerHTML = '<div class="portfolio-add-btn">+</div><span class="portfolio-caption">' + (caps[idx] || 'Ajouter') + '</span>';
+  ph.style.padding = '2rem'; ph.style.minHeight = '';
+  const saved = JSON.parse(localStorage.getItem('rsx_portfolio') || '{}');
+  delete saved[idx];
+  localStorage.setItem('rsx_portfolio', JSON.stringify(saved));
+}
+
+// ── LIGHTBOX ──
+let lbCurrentIdx = -1;
+function openLightboxItem(event, idx) {
+  event.stopPropagation();
+  const saved = JSON.parse(localStorage.getItem('rsx_portfolio') || '{}');
+  if (!saved[idx]) return;
+  lbCurrentIdx = idx;
+  showLightboxData(saved[idx]);
+}
+function showLightboxData(d) {
+  const content = document.getElementById('lightbox-content');
+  const caption = document.getElementById('lightbox-caption');
+  const existing = content.querySelector('img,video');
+  if (existing) existing.remove();
+  caption.textContent = (d.title || '') + (d.category ? ' — ' + d.category : '');
+  let el;
+  if (d.type && d.type.startsWith('video/')) {
+    el = document.createElement('video');
+    el.src = d.base64; el.controls = true;
+  } else {
+    el = document.createElement('img');
+    el.src = d.base64; el.alt = d.title || '';
+  }
+  content.insertBefore(el, content.querySelector('#lightbox-caption'));
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  const v = document.querySelector('#lightbox-content video');
+  if (v) v.pause();
+}
+function lbNav(dir) {
+  const saved = JSON.parse(localStorage.getItem('rsx_portfolio') || '{}');
+  const keys = Object.keys(saved).map(Number).sort((a,b)=>a-b);
+  const cur = keys.indexOf(lbCurrentIdx);
+  const next = keys[(cur + dir + keys.length) % keys.length];
+  if (next !== undefined) { lbCurrentIdx = next; showLightboxData(saved[next]); }
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+// ── EDIT MODAL ──
+let editingIdx = -1;
+function openEditModal(event, idx) {
+  event.stopPropagation();
+  editingIdx = idx;
+  const item = document.querySelectorAll('.portfolio-item')[idx];
+  document.getElementById('editTitle').value = item.dataset.title || '';
+  document.getElementById('editCategory').value = item.dataset.category || '';
+  document.getElementById('editModal').classList.add('open');
+}
+function closeEditModal() { document.getElementById('editModal').classList.remove('open'); }
+function saveEdit() {
+  if (editingIdx < 0) return;
+  const title = document.getElementById('editTitle').value.trim();
+  const category = document.getElementById('editCategory').value;
+  const items = document.querySelectorAll('.portfolio-item');
+  const item = items[editingIdx];
+  item.dataset.title = title;
+  item.dataset.category = category;
+  item.querySelector('.overlay-title').textContent = title;
+  item.querySelector('.overlay-category').textContent = category;
+  const saved = JSON.parse(localStorage.getItem('rsx_portfolio') || '{}');
+  if (saved[editingIdx]) { saved[editingIdx].title = title; saved[editingIdx].category = category; localStorage.setItem('rsx_portfolio', JSON.stringify(saved)); }
+  closeEditModal();
+}
+
+// ══════════════════════════════════════
+// PARTICULES HERO (dorées flottantes)
+// ══════════════════════════════════════
+(function initParticles() {
+  const canvas = document.getElementById('heroParticles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORS = ['rgba(196,168,130,', 'rgba(139,111,71,', 'rgba(232,213,183,'];
+  for (let i = 0; i < 55; i++) {
+    particles.push({
+      x: Math.random() * 1200,
+      y: Math.random() * 800,
+      r: Math.random() * 2.5 + 0.5,
+      dx: (Math.random() - 0.5) * 0.35,
+      dy: -Math.random() * 0.5 - 0.1,
+      alpha: Math.random() * 0.6 + 0.15,
+      col: COLORS[Math.floor(Math.random() * COLORS.length)]
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x % W, p.y % H, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.col + p.alpha + ')';
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.y < -5) p.y = H + 5;
+      if (p.x < -5) p.x = W + 5;
+      if (p.x > W + 5) p.x = -5;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ══════════════════════════════════════
+// FORMULAIRE — ENVOI MAILTO
+// ══════════════════════════════════════
+function sendForm() {
+  const prenom  = (document.getElementById('formPrenom')?.value || '').trim();
+  const nom     = (document.getElementById('formNom')?.value || '').trim();
+  const email   = (document.getElementById('formEmail')?.value || '').trim();
+  const type    = (document.getElementById('formType')?.value || '');
+  const message = (document.getElementById('formMessage')?.value || '').trim();
+
+  if (!prenom && !nom) { showToast('⚠  Veuillez indiquer votre nom', true); return; }
+  if (!email)          { showToast('⚠  Veuillez indiquer votre email', true); return; }
+  if (!message)        { showToast('⚠  Veuillez écrire un message', true); return; }
+
+  const subject = encodeURIComponent('Projet — ' + (type || 'Demande') + ' | ' + prenom + ' ' + nom);
+  const body    = encodeURIComponent(
+    'Bonjour Franck,\n\nJe me permets de vous contacter.\n\n' +
+    'Nom : ' + prenom + ' ' + nom + '\n' +
+    'Email : ' + email + '\n' +
+    'Type de projet : ' + (type || 'Non précisé') + '\n\n' +
+    'Message :\n' + message + '\n\nCordialement,\n' + prenom
+  );
+
+  window.location.href = 'mailto:kouassikouadiofranck12@gmail.com?subject=' + subject + '&body=' + body;
+  showToast('✓  Message préparé — votre client mail va s\'ouvrir');
+
+  // Reset
+  ['formPrenom','formNom','formEmail','formMessage'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const sel = document.getElementById('formType');
+  if (sel) sel.selectedIndex = 0;
+}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.style.borderColor = isError ? '#e87070' : 'var(--gold2)';
+  t.style.color       = isError ? '#e87070' : 'var(--gold2)';
+  t.style.opacity     = '1';
+  t.style.transform   = 'translateX(-50%) translateY(0)';
+  t.style.pointerEvents = 'auto';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => {
+    t.style.opacity   = '0';
+    t.style.transform = 'translateX(-50%) translateY(80px)';
+    t.style.pointerEvents = 'none';
+  }, 3200);
+}
+
+// ══════════════════════════════════════
+// SMOOTH HOVER SUR LIENS NAV
+// ══════════════════════════════════════
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('mouseenter', function() {
+    document.querySelectorAll('.nav-links a').forEach(b => {
+      if (b !== this) b.style.opacity = '0.4';
+    });
+  });
+  a.addEventListener('mouseleave', function() {
+    document.querySelectorAll('.nav-links a').forEach(b => b.style.opacity = '');
+  });
+});
+
+// ══════════════════════════════════════
+// PARALLAXE LÉGER AU SCROLL
+// ══════════════════════════════════════
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const canvas = document.getElementById('heroParticles');
+  if (canvas) canvas.style.transform = `translateY(${y * 0.18}px)`;
+  const heroLeft = document.querySelector('.hero-left');
+  if (heroLeft) heroLeft.style.transform = `translateY(${y * 0.06}px)`;
+});
+
+// ══════════════════════════════════════
+// TYPEWRITER — COVER SUBTITLE
+// ══════════════════════════════════════
+function typewriterEffect(el, text, speed) {
+  el.textContent = '';
+  let i = 0;
+  const timer = setInterval(() => {
+    el.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
+}
+const coverSub = document.querySelector('.cover-subtitle');
+if (coverSub) {
+  const originalText = coverSub.textContent;
+  coverSub.textContent = '';
+  setTimeout(() => typewriterEffect(coverSub, originalText, 55), 1200);
+}
+
+// ══════════════════════════════════════
+// MAGNETIC BUTTONS (btn-primary)
+// ══════════════════════════════════════
+document.querySelectorAll('.btn-primary, .form-submit').forEach(btn => {
+  btn.addEventListener('mousemove', function(e) {
+    const r = this.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    this.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+  });
+  btn.addEventListener('mouseleave', function() {
+    this.style.transform = '';
+  });
+});
+
+// ══════════════════════════════════════
+// HIGHLIGHT SERVICE CAT AU HOVER
+// ══════════════════════════════════════
+document.querySelectorAll('.srv-cat').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    document.querySelectorAll('.srv-cat').forEach(c => {
+      if (c !== this) c.style.opacity = '0.5';
+    });
+  });
+  card.addEventListener('mouseleave', function() {
+    document.querySelectorAll('.srv-cat').forEach(c => c.style.opacity = '');
+  });
+});
+document.querySelectorAll('.pf-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      if (filter === 'all' || item.dataset.category === filter) {
+        item.classList.remove('hidden-item');
+      } else {
+        item.classList.add('hidden-item');
+      }
+    });
+  });
+});
+
+// ── RESTAURER LES DONNÉES ──
+window.addEventListener('DOMContentLoaded', function() {
+  initHeroAnims();
+  const savedTopBanner = localStorage.getItem('rsx_top_banner');
+  if (savedTopBanner) applyTopBanner(savedTopBanner);
+  const savedBanner = localStorage.getItem('rsx_banner');
+  if (savedBanner) { const bannerEl = document.getElementById('heroBanner'); if (bannerEl) applyBanner(bannerEl, savedBanner); }
+  const savedLogo = localStorage.getItem('rsx_logo');
+  if (savedLogo) { const logoEl = document.querySelector('.cover-logo-zone'); if (logoEl) applyLogo(logoEl, savedLogo); }
+  const savedPortrait = localStorage.getItem('rsx_portrait');
+  if (savedPortrait) { const portraitEl = document.querySelector('.hero-portrait'); if (portraitEl) applyPortrait(portraitEl, savedPortrait); }
+  const savedPortfolio = JSON.parse(localStorage.getItem('rsx_portfolio') || '{}');
+  document.querySelectorAll('.portfolio-placeholder').forEach(function(el, i) {
+    if (savedPortfolio[i]) { const d = savedPortfolio[i]; applyMedia(el, d.base64, d.type, d.title); }
+  });
+});
+</script>
+</body>
+</html>
